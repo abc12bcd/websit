@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>非遗文化推广活动方案</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes textGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+
+            10% {
+                transform: translateY(90vh);
+                opacity: 1;
+            }
+
+            90% {
+                transform: translateY(10vh);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(0vh);
+                opacity: 0;
+            }
+        }
+
+        .floating-element {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: float 12s linear infinite;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            padding: 5px 15px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .floating-element:hover {
+            animation-play-state: paused;
+        }
+
+        .floating-element span {
+            margin: 0 4px;
+            background: linear-gradient(90deg, #ff0000, #ffa500, #ffff00, #008000, #0000ff, #4b0082, #ee82ee);
+            background-size: 1400% 100%;
+            animation: textGradient 7s linear infinite;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+        }
+
+        .floating-element .icon {
+            font-size: 1.6em;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .background-image-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .background-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, rgba(0, 87, 146, 0.9), rgba(0, 51, 78, 0.9), rgba(20, 83, 116, 0.9), rgba(26, 27, 65, 0.9));
+            z-index: 1;
+        }
+
+        .background-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+            filter: saturate(1.2) contrast(1.1) blur(3px);
+            transform: scale(1.1);
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 1000px;
+            width: 100%;
+            margin: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 28px;
+            position: relative;
+            padding-bottom: 10px;
+            background: linear-gradient(90deg, #ff0000, #ffa500, #ffff00, #008000, #0000ff, #4b0082, #ee82ee);
+            background-size: 1400% 100%;
+            animation: textGradient 7s linear infinite;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, #23a6d5, #23d5ab);
+            border-radius: 2px;
+            background: linear-gradient(90deg, #ff0000, #ffa500, #ffff00, #008000, #0000ff, #4b0082, #ee82ee);
+            background-size: 1400% 100%;
+            animation: textGradient 7s linear infinite;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 20px;
+            border-left: 4px solid #23a6d5;
+            padding-left: 10px;
+            transition: all 0.3s ease;
+            background: linear-gradient(90deg, #ff0000, #ffa500, #ffff00, #008000, #0000ff, #4b0082, #ee82ee);
+            background-size: 1400% 100%;
+            animation: textGradient 7s linear infinite;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2:hover {
+            transform: translateX(5px);
+        }
+
+        ul,
+        ol {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        li:hover {
+            transform: translateX(5px);
+        }
+
+        .sub-list {
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+
+        .highlight {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .highlight:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .note {
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            margin: 15px 0;
+            color: #555;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 0 10px 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .note:hover {
+            transform: translateX(5px);
+        }
+
+        strong {
+            color: #2c3e50;
+            background: linear-gradient(120deg, #23a6d5 0%, #23d5ab 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background: linear-gradient(90deg, #ff0000, #ffa500, #ffff00, #008000, #0000ff, #4b0082, #ee82ee);
+            background-size: 1400% 100%;
+            animation: textGradient 7s linear infinite;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 18px;
+            background: linear-gradient(90deg, #ff0000, #ffa500, #ffff00, #008000, #0000ff, #4b0082, #ee82ee);
+            background-size: 1400% 100%;
+            animation: textGradient 7s linear infinite;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .content-image {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+        .content-image:hover {
+            transform: scale(1.02);
+        }
+
+        .image-caption {
+            text-align: center;
+            color: #666;
+            margin-top: 10px;
+            font-size: 14px;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-image-container">
+        <img src="https://th.bing.com/th/id/OIP.vmzsDkLDeroxMcZQ3hW53gHaFX?w=218&h=180&c=7&r=0&o=5&dpr=2&pid=1.7"
+            alt="蓝染布艺术背景" class="background-image">
+    </div>
+    <div id="background-elements"></div>
+    <script>
+        const elements = [
+            { text: '中国功夫', icon: '🥋' },
+            { text: '景德镇陶瓷', icon: '🏺' },
+            { text: '苏州刺绣', icon: '🧵' },
+            { text: '京剧艺术', icon: '🎭' },
+            { text: '龙舟竞渡', icon: '🛶' },
+            { text: '剪纸艺术', icon: '✂️' },
+            { text: '中医针灸', icon: '💊' },
+            { text: '茶道文化', icon: '🍵' },
+            { text: '书法艺术', icon: '✒️' },
+            { text: '古琴演奏', icon: '🎸' },
+            { text: '川剧变脸', icon: '🎭' },
+            { text: '皮影戏', icon: '👥' },
+            { text: '泥塑艺术', icon: '🏺' },
+            { text: '蜀绣', icon: '🧵' },
+            { text: '端午香囊', icon: '👝' },
+            { text: '年画', icon: '🎨' },
+            { text: '漆器工艺', icon: '🥄' },
+            { text: '织锦技艺', icon: '🧶' }
+        ];
+
+        const MAX_ELEMENTS = 15; // 最大浮动元素数量
+        let currentElements = 0;
+
+        function createFloatingElement() {
+            if (currentElements >= MAX_ELEMENTS) {
+                return;
+            }
+
+            const element = document.createElement('div');
+            element.className = 'floating-element';
+            const item = elements[Math.floor(Math.random() * elements.length)];
+
+            const iconSpan = document.createElement('span');
+            iconSpan.className = 'icon';
+            iconSpan.textContent = item.icon;
+
+            const textSpan = document.createElement('span');
+            textSpan.textContent = item.text;
+
+            element.appendChild(iconSpan);
+            element.appendChild(textSpan);
+
+            element.style.left = Math.random() * 90 + 5 + 'vw';
+            element.style.fontSize = (Math.random() * 16 + 14) + 'px';
+            element.style.animationDuration = (Math.random() * 8 + 8) + 's';
+
+            document.getElementById('background-elements').appendChild(element);
+            currentElements++;
+
+            element.addEventListener('animationend', () => {
+                element.remove();
+                currentElements--;
+                createFloatingElement(); // 当一个元素消失时创建新的元素
+            });
+        }
+
+        // 初始创建固定数量的浮动元素
+        for (let i = 0; i < MAX_ELEMENTS; i++) {
+            setTimeout(() => createFloatingElement(), i * 500);
+        }
+    </script>
+    <div class="container">
+        <h1>非遗文化推广活动方案</h1>
+
+        <h2>一、活动对象</h2>
+        <ul>
+            <li>高校学生（重点：传媒、设计、历史专业学生）</li>
+        </ul>
+
+        <h2>二、活动内容与形式</h2>
+        <img src="https://th.bing.com/th/id/OIP.vmzsDkLDeroxMcZQ3hW53gHaFX?w=218&h=180&c=7&r=0&o=5&dpr=2&pid=1.7"
+            alt="非遗文化展示" class="content-image">
+        <p class="image-caption">非遗文化艺术展示</p>
+        <div class="highlight">
+            <h3>线上核心活动</h3>
+            <ul>
+                <li>
+                    <strong>"非遗一分钟"短视频挑战</strong>
+                    <ul class="sub-list">
+                        <li>平台：抖音、微信视频号</li>
+                        <li>要求：用1分钟创意视频介绍1项非遗（如彩灯制作过程、井盐工具功能）</li>
+                        <li>奖励：Top20作品获非遗文创纪念品（如彩灯书签、扎染布袋）</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>非遗直播快闪课</strong>
+                    <ul class="sub-list">
+                        <li>内容：30分钟精简版课程（如"井盐开采的科技智慧""扎染的色彩秘密"）</li>
+                        <li>场次：每周1场，共4场</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <h3>线下轻体验</h3>
+            <ul>
+                <li>
+                    <strong>非遗快闪展</strong>
+                    <ul class="sub-list">
+                        <li>地点：高校食堂、图书馆入口</li>
+                        <li>内容：陈列彩灯、龚扇等实物，配二维码扫码观看短视频</li>
+                        <li>时间：每校1天，覆盖5所高校</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <h2>三、保障措施</h2>
+        <ul>
+            <li>
+                <strong>简易资源包</strong>
+                <ul class="sub-list">
+                    <li>提供"非遗知识卡"（含关键词、图片），供短视频创作参考</li>
+                    <li>开放盐业历史博物馆线上展厅链接</li>
+                </ul>
+            </li>
+            <li>
+                <strong>宣传支持</strong>
+                <ul class="sub-list">
+                    <li>通过高校社团公众号、班级群推送活动信息</li>
+                </ul>
+            </li>
+            <li>
+                <strong>人员安排</strong>
+                <ul class="sub-list">
+                    <li>每场线下展配置2名志愿者讲解</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>四、注意事项</h2>
+        <div class="note">
+            <ul>
+                <li>短视频内容需标注"自贡非遗"标签，确保文化准确性</li>
+                <li>线下展览避免占用学生上课时间（建议午间或傍晚）</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
